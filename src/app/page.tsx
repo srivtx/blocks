@@ -25,6 +25,10 @@ export default function Home() {
             <span className="phase-order">Completed phases: {completed.length}/{phases.length}</span>
             <span className="phase-order">Quizzes attempted: {quizCount}</span>
             <button type="button" className="term-chip" onClick={resetProgress} aria-label="reset-progress">Reset Progress</button>
+            <Link href="/learn/core-systems" className="term-chip">Core Systems Track</Link>
+            <Link href="/learn/foundations/puzzles" className="term-chip">Thinking Puzzles</Link>
+            <Link href="/learn/tooling/anchor-basics" className="term-chip">Anchor Basics</Link>
+            <Link href="/learn/protocols/vault" className="term-chip">Vault Deep Dive</Link>
             <Link href="/architecture/defi-systems" className="term-chip">DeFi Case Studies</Link>
             <Link href="/architecture/validators" className="term-chip">System Diagrams</Link>
           </div>
