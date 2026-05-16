@@ -1,26 +1,228 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #07121f;
+  --bg-2: #0e1e33;
+  --surface: rgba(9, 22, 38, 0.72);
+  --surface-strong: rgba(13, 31, 54, 0.92);
+  --line: rgba(148, 184, 220, 0.24);
+  --text: #eaf3ff;
+  --muted: #a7bfd8;
+  --accent: #7cd4ff;
+  --accent-soft: rgba(124, 212, 255, 0.2);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background:
+    radial-gradient(65rem 45rem at -5% -15%, rgba(124, 212, 255, 0.2), transparent 62%),
+    radial-gradient(45rem 35rem at 105% 5%, rgba(120, 186, 255, 0.16), transparent 60%),
+    linear-gradient(170deg, var(--bg) 0%, var(--bg-2) 100%);
+  color: var(--text);
+  font-family: var(--font-body), sans-serif;
+}
+
+.display-title {
+  font-family: var(--font-heading), sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.glass-panel,
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: linear-gradient(160deg, var(--surface-strong), var(--surface));
+  backdrop-filter: blur(8px);
+}
+
+.glass-panel {
+  padding: 1.5rem;
+}
+
+.panel {
+  padding: 1.25rem;
+}
+
+.section-title {
+  margin: 0;
+  font-family: var(--font-heading), sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: -0.01em;
+}
+
+.section-copy {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.phase-card {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(8, 20, 35, 0.6);
+  padding: 0.85rem;
+  display: grid;
+  gap: 0.22rem;
+  transition: 180ms ease;
+}
+
+.phase-card:hover {
+  border-color: rgba(124, 212, 255, 0.48);
+  transform: translateY(-2px);
+}
+
+.phase-card-active {
+  border-color: rgba(124, 212, 255, 0.7);
+  box-shadow: 0 0 0 1px rgba(124, 212, 255, 0.4) inset;
+}
+
+.phase-order,
+.sim-meta,
+.timeline-detail,
+.term-why {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.phase-title,
+.timeline-stage,
+.sim-title,
+.term-name,
+.lens-question {
+  font-weight: 600;
+}
+
+.phase-objective,
+.lens-answer,
+.term-copy,
+.sim-focus {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.lens-item,
+.timeline-item,
+.sim-card,
+.term-panel {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(8, 20, 35, 0.65);
+  padding: 0.75rem;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 0.7rem;
+}
+
+.timeline-index {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 212, 255, 0.6);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.86rem;
+}
+
+.sim-card {
+  display: grid;
+  gap: 0.44rem;
+}
+
+.term-chip {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+  background: rgba(7, 19, 33, 0.68);
+  transition: 160ms ease;
+}
+
+.term-chip:hover,
+.term-chip-active {
+  border-color: rgba(124, 212, 255, 0.6);
+  background: var(--accent-soft);
+}
+
+.hero-orb {
+  pointer-events: none;
+  position: fixed;
+  width: 320px;
+  height: 320px;
+  border-radius: 999px;
+  filter: blur(72px);
+  opacity: 0.33;
+}
+
+.hero-orb-left {
+  left: -140px;
+  top: 120px;
+  background: #64c8ff;
+}
+
+.hero-orb-right {
+  right: -130px;
+  top: 260px;
+  background: #6fa8ff;
+}
+
+.lesson-copy {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #d7e7fb;
+}
+
+.term-inline {
+  border-bottom: 1px dashed rgba(124, 212, 255, 0.8);
+  color: #bfe6ff;
+  cursor: help;
+}
+
+textarea {
+  resize: vertical;
+}
+
+@media (max-width: 768px) {
+  .display-title {
+    font-size: clamp(1.5rem, 8vw, 2.2rem);
+    line-height: 1.15;
+  }
+
+  .panel,
+  .glass-panel {
+    padding: 1rem;
+  }
+
+  .sim-card,
+  .phase-card,
+  .lens-item {
+    padding: 0.7rem;
+  }
 }
