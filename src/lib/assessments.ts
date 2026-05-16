@@ -5,7 +5,12 @@ export type PhaseAssessment = {
 };
 
 export const assessments: Record<string, PhaseAssessment> = {
-  "foundations-state": { phaseId: "foundations-state", prompt: "Explain why deterministic state transitions are required before distributed consensus.", requiredKeywords: ["state", "deterministic", "replay", "consensus"] },
+  "foundations-state": {
+    phaseId: "foundations-state",
+    prompt:
+      "Explain this full causal chain in your own words: (1) what fails when two machines execute the same instruction from different prior state, (2) why that forces deterministic transition rules, and (3) why validators must replay transitions instead of trusting intent.",
+    requiredKeywords: ["prior state", "deterministic", "replay", "validator", "consensus"],
+  },
   "distributed-systems": { phaseId: "distributed-systems", prompt: "Explain how ordering and partitions affect state convergence.", requiredKeywords: ["ordering", "partition", "replica", "converge"] },
   cryptography: { phaseId: "cryptography", prompt: "Explain why local signature verification is required for authorization.", requiredKeywords: ["signature", "authorization", "validator", "local"] },
   bitcoin: { phaseId: "bitcoin", prompt: "Explain how UTXO links prevent invalid state mutation.", requiredKeywords: ["utxo", "unspent", "provenance", "double-spend"] },
