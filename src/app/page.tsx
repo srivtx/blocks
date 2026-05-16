@@ -8,7 +8,9 @@ import { isPhaseUnlocked, isSimulatorUnlocked, simulatorUnlockRequirement } from
 
 export default function Home() {
   const completed = useProgressStore((s) => s.completedPhases);
+  const quizScores = useProgressStore((s) => s.quizScores);
   const resetProgress = useProgressStore((s) => s.resetProgress);
+  const quizCount = Object.keys(quizScores).length;
 
   return (
     <div className="relative flex flex-1 flex-col">
@@ -21,6 +23,7 @@ export default function Home() {
           <p className="mt-4 max-w-4xl text-base text-slate-300 sm:text-lg">Architecture-first, causal, validator-runtime mental model training from state fundamentals to advanced Solana protocol design.</p>
           <div className="mt-4 flex flex-wrap gap-2">
             <span className="phase-order">Completed phases: {completed.length}/{phases.length}</span>
+            <span className="phase-order">Quizzes attempted: {quizCount}</span>
             <button type="button" className="term-chip" onClick={resetProgress} aria-label="reset-progress">Reset Progress</button>
             <Link href="/architecture/defi-systems" className="term-chip">DeFi Case Studies</Link>
             <Link href="/architecture/validators" className="term-chip">System Diagrams</Link>

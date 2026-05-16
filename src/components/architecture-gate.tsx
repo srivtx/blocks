@@ -5,6 +5,8 @@ import Link from "next/link";
 import { GlossaryInline } from "@/components/glossary-inline";
 import type { PhaseLesson } from "@/lib/lesson-content";
 import { assessments, evaluateAssessment } from "@/lib/assessments";
+import { phaseQuizzes } from "@/lib/quiz-bank";
+import { QuizPanel } from "@/components/quiz-panel";
 import { useProgressStore } from "@/lib/progress-store";
 import { phases } from "@/lib/architecture";
 
@@ -44,6 +46,14 @@ export function ArchitectureGate({ lesson, phaseId }: { lesson: PhaseLesson; pha
           ))}
         </div>
       </article>
+
+      {phaseQuizzes[phaseId] ? (
+        <QuizPanel
+          quizId={`phase:${phaseId}`}
+          title="Reinforcement Quiz"
+          questions={phaseQuizzes[phaseId]}
+        />
+      ) : null}
 
       <article className="lens-item">
         <p className="lens-question">State Transition Exercise</p>

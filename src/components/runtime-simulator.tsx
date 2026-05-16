@@ -5,6 +5,8 @@ import ReactFlow, { Background, Controls, MarkerType, type Edge, type Node } fro
 import "reactflow/dist/style.css";
 import { useSimulationStore, buildCurrentState } from "@/lib/simulation-store";
 import type { SimulatorScenario } from "@/lib/simulator-scenarios";
+import { simulatorQuizzes } from "@/lib/quiz-bank";
+import { QuizPanel } from "@/components/quiz-panel";
 
 type RuntimeSimulatorProps = {
   scenario: SimulatorScenario;
@@ -87,6 +89,14 @@ export function RuntimeSimulator({ scenario }: RuntimeSimulatorProps) {
           <p className="lens-answer">{Object.entries(current).map(([k, v]) => `${k}=${v}`).join(" | ")}</p>
         </div>
       </div>
+
+      {simulatorQuizzes[scenario.id] ? (
+        <QuizPanel
+          quizId={`sim:${scenario.id}`}
+          title="Post-Simulator Quiz"
+          questions={simulatorQuizzes[scenario.id]}
+        />
+      ) : null}
     </div>
   );
 }
